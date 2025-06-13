@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Кондитерская Шекер — Главная</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fdfaf8;
+      color: #6d5241;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 25px;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      background-color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background-color: #6d5241;
+      border-radius: 15px;
+      padding: 40px 20px;
+      margin-top: 30px;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .hero-text {
+      max-width: 700px;
+      margin: 60px auto 40px;
+      padding: 30px 25px;
+      background: #f5f1ed;
+      border-radius: 20px;
+      text-align: left;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #6d5241;
+      font-weight: 400;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      
+    }
+    .hero-text p {
+    margin-bottom: 16px;
+    }
+
+    .hero-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #654e3e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 15px;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    /* ТОРТИКИ */
+    .cake-left, .cake-right {
+      position: fixed;
+      font-size: 28px;
+      animation: falling 6s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .cake-left { left: 5vw; top: -50px; }
+    .cake-right { right: 5vw; top: -50px; }
+    .delay1 { left: 15vw; animation-delay: 1s; }
+    .delay2 { right: 15vw; animation-delay: 2s; }
+    .delay3 { left: 25vw; animation-delay: 3s; }
+    .delay4 { right: 25vw; animation-delay: 4s; }
+
+    @keyframes falling {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateY(50vh) rotate(180deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* КАТАЛОГ */
+    #catalog {
+      margin-top: 60px;
+    }
+
+    h1.catalog-title {
+      text-align: center;
+      font-size: 32px;
+      margin: 30px 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid #e8dcd4;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-name {
+      font-size: 20px;
+      margin: 15px 0 10px 0;
+      color: #3b3028;
+    }
+
+    .product-price {
+      font-weight: bold;
+      color: #3b3028;
+      font-size: 18px;
+      
+    }
+    .cake-info-box {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px 20px;
+  background: #f5f1ed;
+  border-radius: 16px;
+  text-align: center;
+  font-size: 15px;
+  color: #6d5241;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  line-height: 1.6;
+}
+
+
+    
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="header-wrapper">
+        <img src="images/sheker.jpeg" alt="Кондитерская Шекер" width="450" height="200">
+      </div>
+    </header> 
+
+    <!-- Анимация -->
+    <div class="cake-left"><img src="images/торт.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-right"><img src="images/торт.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-left delay1"><img src="images/торт.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-right delay2"><img src="images/торт.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-left delay3"><img src="images/торт.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-right delay4"><img src="images/торт.PNG" alt="cake" width="50" height="50"></div>
+
+    <div class="hero">
+      <h1>Кондитерская «Шекер»</h1>
+      <nav>
+        <a href="#top">Главная</a>
+        <a href="#catalog">Меню</a>
+        <a href="проектНА3стр.html">Доставка и оплата</a>
+        <a href="проектНА4стр.html">Контакты</a>
+      </nav>
+    </div>
+
+    <section class="hero-text">
+      <h2>Добро пожаловать в «Шекер»</h2>
+      <p>Рады видеть вас в нашем сладком уголке.
+
+      </p>
+
+      <p>Здесь каждая крошка полна заботы, а каждый вкус — с характером. 
+        Наши десерты — это не просто сладости, а капризные маленькие праздники, которые точно знают, как поднять настроение.</p>
+
+      <p>Вы, конечно, можете закрыть сайт... 
+        Но разве не любопытно, что прячется внутри самой вкусной коробочки этого дня? 🍰</p>
+    </section>
+
+    <!-- КАТАЛОГ -->
+    <section id="catalog">
+  <h1 class="catalog-title">Меню</h1>
+
+  <p style="font-size: 14px; color: #666; text-align: center; margin: 10px 20px 30px;">
+    Оформление торта — по вашему желанию и входит в комплект при заказе 🍰<br>
+    Свечи и открытки — можно добавить за +500тг 🎉
+  </p>
+   <p style="font-size: 14px; color: #666666a4; text-align: center; margin: 10px 20px 30px;">
+   (Нажмите на изображение торта, чтобы перейти на страницу с <strong>доставкой и оплатой</strong>.)
+  </p>
+  
+  <div class="product-grid">
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/oreo.jpeg" alt="Орео">
+      </a>
+      <div class="product-name">Бенто-орео</div>
+      <div class="product-price">8.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/cherry.jpeg" alt="Вишня кокс">
+      </a>
+      <div class="product-name">Бенто-вишня-кокос</div>
+      <div class="product-price">9.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/carrot.jpeg" alt="Морковный">
+      </a>
+      <div class="product-name">Бенто-морковь</div>
+      <div class="product-price">8.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/sakura.jpeg" alt="Сакура">
+      </a>
+      <div class="product-name">Бенто-сакура</div>
+      <div class="product-price">8.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/honey.jpeg" alt="Медовик">
+      </a>
+      <div class="product-name">Бенто-медовик</div>
+      <div class="product-price">8.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/strawberry.jpeg" alt="Клубника">
+      </a>
+      <div class="product-name">Бенто-клубника с молоком</div>
+      <div class="product-price">8.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/banoffee.jpeg" alt="Баноффи">
+      </a>
+      <div class="product-name">Бенто-баноффи</div>
+      <div class="product-price">9.900тг</div>
+    </div>
+    <div class="product-card">
+      <a href="проектНА3стр.html">
+        <img src="images/shke.jpeg" alt="Кuugu">
+      </a>
+      <div class="product-name">Бенто+Капкейки</div>
+      <div class="product-price">16.990тг</div>
+    </div>
+
+  </div>
+ <div class="cake-info-box">
+  Бенто торт — для 1–2 человек:<br>
+  Вес: 300–400 г (±)<br>
+  Диаметр: 10 см<br><br>
+
+  Бенто торт — для 3–4 человек:<br>
+  Вес: 600–700 г (±)<br>
+  Диаметр: 15 см
+</div>
+
+</div>
+</section>
+
+    <footer>
+      © 2025 Sheker. Все права защищены.
+    </footer>
+  </div>
+</body>
+</html>

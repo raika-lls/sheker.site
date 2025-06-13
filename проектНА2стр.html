@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Каталог — Кондитерская Шекер</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f1ed;
+      color: #3b3028;
+    }
+
+    .wrapper {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border: 3px solid rgba(248, 244, 240, 0.85);
+      border-radius: 15px;
+    }
+
+    header, footer {
+      background-color: #3b3028;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    h1.catalog-title {
+      text-align: center;
+      font-size: 32px;
+      margin: 30px 0;
+      color: #3b3028;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+      border: 1px solid #e8dcd4;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-name {
+      font-size: 20px;
+      margin: 15px 0 10px 0;
+      color: #3b3028;
+    }
+
+    .product-price {
+      font-weight: bold;
+      color: #3b3028;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Кондитерская Шекер</h1>
+      <nav>
+        <a href="проектНА.html">Главная</a>
+        <a href="проектНА2стр.html">Меню</a>
+        <a href="проектНА3стр.html">Доставка и оплата</a>
+        <a href="проектНА4стр.html">Контакты</a>
+      </nav>
+    </header>
+
+    <h1 class="catalog-title">Меню</h1>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/f8/20/75/f82075f04398b3a7a2fa49db0e9cbed3.jpg" alt="Ламбет">
+        <div class="product-name">Торт «Ламбет»</div>
+        <div class="product-price">8500 тг</div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/f7/29/23/f729231a433f9dda422e8301a9458b79.jpg" alt="Бенто">
+        <div class="product-name">Бенто торт</div>
+        <div class="product-price">8600 тг</div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/c0/f9/6f/c0f96f7a4638339d15edb7a2ffcdeaaf.jpg" alt="Бенто + Ламбет">
+        <div class="product-name">Бенто + Ламбет</div>
+        <div class="product-price">16000 тг</div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/4f/b1/7b/4fb17b8c7e346d03a220244a9d7fa06a.jpg" alt="Капкейки">
+        <div class="product-name">Капкейки</div>
+        <div class="product-price">2500 тг (1шт)</div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/a9/12/b8/a912b8376e7b3b18fb3c92e617a0aed1.jpg" alt="Капкейки с бенто">
+        <div class="product-name">Капкейки с Бенто</div>
+        <div class="product-price">15000 тг</div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.pinimg.com/736x/ab/8d/c1/ab8dc1024130dc467442a224be32d28f.jpg" alt="Капкейки с Ламбет">
+        <div class="product-name">Капкейки с Ламбет</div>
+        <div class="product-price">15000 тг</div>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 Sheker. Все права защищены.
+    </footer>
+  </div>
+</body>
+</html>
