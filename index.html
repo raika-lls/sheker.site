@@ -2,8 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Кондитерская Шекер — Главная</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
@@ -19,6 +18,89 @@
       color: #6d5241;
       overflow-x: hidden;
       scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+    
+    
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .modal-content button {
+      background: #6d5241;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .modal-content button:hover {
+      background: #5a4032;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .city-message {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff0e8;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 20px;
+      font-weight: 500;
+      opacity: 0;
+      z-index: 10000;
+      transition: all 0.8s ease;
+    }
+
+    .city-message.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .city-message.hide {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-60px);
     }
 
     .wrapper {
@@ -191,41 +273,41 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   line-height: 1.6;
 }
-img {
-  max-width: 100%;
-  height: auto;
-}
 
-.wrapper {
-  width: 100%;
-  padding: 15px;
-  box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 26px;
-  }
-
-  .product-name {
-    font-size: 16px;
-  }
-
-  .product-price {
-    font-size: 15px;
-  }
-
-  .hero-text {
-    padding: 20px 15px;
-    font-size: 15px;
-  }
-}
 
     
   </style>
 </head>
 
 <body>
+   <div class="modal" id="cityModal">
+    <div class="modal-content">
+      <h2>Выберите ваш город</h2>
+      <select id="citySelect">
+        <option disabled selected>-- Выберите город --</option>
+        <option>Алматы</option>
+        <option>Астана</option>
+        <option>Шымкент</option>
+        <option>Караганда</option>
+        <option>Актобе</option>
+        <option>Тараз</option>
+        <option>Усть-Каменогорск</option>
+        <option>Костанай</option>
+        <option>Павлодар</option>
+        <option>Атырау</option>
+        <option>Кызылорда</option>
+        <option>Уральск</option>
+        <option>Петропавловск</option>
+        <option>Семей</option>
+      </select>
+      <button onclick="selectCity()">Выбрать</button>
+    </div>
+  </div>
+
+  <!-- Сообщение -->
+  <div class="city-message" id="cityMessage"></div>
+
+  <main>
   <div class="wrapper">
     <header>
       <div class="header-wrapper">
@@ -234,20 +316,20 @@ img {
     </header> 
 
     <!-- Анимация -->
-    <div class="cake-left"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-right"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-left delay1"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-right delay2"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-left delay3"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-right delay4"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-left"><img src="images/cake.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-right"><img src="images/cake.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-left delay1"><img src="images/cake.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-right delay2"><img src="images/cake.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-left delay3"><img src="images/cake.PNG" alt="cake" width="50" height="50"></div>
+    <div class="cake-right delay4"><img src="images/cake.PNG" alt="cake" width="50" height="50"></div>
 
     <div class="hero">
       <h1>Кондитерская «Шекер»</h1>
       <nav>
         <a href="#top">Главная</a>
         <a href="#catalog">Меню</a>
-        <a href="projectNA3.html">Доставка и оплата</a>
-        <a href="projectNA4.html">Контакты</a>
+        <a href="projectNA3.html">Начинки</a>
+        <a href="projectNA4.html">Связь</a>
       </nav>
     </div>
 
@@ -273,65 +355,65 @@ img {
     Свечи и открытки — можно добавить за +500тг 🎉
   </p>
    <p style="font-size: 14px; color: #666666a4; text-align: center; margin: 10px 20px 30px;">
-   (Нажмите на изображение торта, чтобы перейти на страницу с <strong>доставкой и оплатой</strong>.)
+   (Нажмите на изображение торта, чтобы перейти к выбору <strong>Начинки</strong> и уточнению стоимости.)
   </p>
   
   <div class="product-grid">
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="oreo.jpeg" alt="Орео">
-      </a>
-      <div class="product-name">Бенто-орео</div>
-      <div class="product-price">8.900тг</div>
+        <img src="lambet.jpg" alt="Ламбет">
+     </a>
+      <div class="product-name">Торт «Ламбет»</div>
+      
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="cherry.jpeg" alt="Вишня кокс">
+        <img src="benn.jpg" alt="Бенто ориг">
       </a>
-      <div class="product-name">Бенто-вишня-кокос</div>
-      <div class="product-price">9.900тг</div>
+      <div class="product-name">Бенто торт</div>
+     
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="carrot.jpeg" alt="Морковный">
+        <img src="lamben.jpg" alt="Бенто + Ламбет">
       </a>
-      <div class="product-name">Бенто-морковь</div>
-      <div class="product-price">8.900тг</div>
+      <div class="product-name">Бенто + Ламбет</div>
+    
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="sakura.jpeg" alt="Сакура">
+        <img src="cape.jpg" alt="Капкейки">
       </a>
-      <div class="product-name">Бенто-сакура</div>
-      <div class="product-price">8.900тг</div>
+      <div class="product-name">Капкейки</div>
+      <div class="product-price">1.500тг (1шт)</div>
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="honey.jpeg" alt="Медовик">
+        <img src="capeben.jpg" alt="Капкейки с Бенто">
       </a>
-      <div class="product-name">Бенто-медовик</div>
-      <div class="product-price">8.900тг</div>
+      <div class="product-name">Капкейки с Бенто</div>
+      
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="strawberry.jpeg" alt="Клубника">
+        <img src="capelambet.jpg" alt="Капкейки с Ламбет">
       </a>
-      <div class="product-name">Бенто-клубника с молоком</div>
-      <div class="product-price">8.900тг</div>
+      <div class="product-name">Капкейки с Ламбет</div>
+     
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="banoffee.jpeg" alt="Баноффи">
+        <img src="macaroon.jpeg" alt="Макарон">
       </a>
-      <div class="product-name">Бенто-баноффи</div>
-      <div class="product-price">9.900тг</div>
+      <div class="product-name">Макароны</div>
+      <div class="product-price">2.900тг (1шт)</div>
     </div>
     <div class="product-card">
       <a href="projectNA3.html">
-        <img src="shke.jpeg" alt="Кuugu">
+        <img src="benmaca.jpeg" alt="mmaca">
       </a>
-      <div class="product-name">Бенто+Капкейки</div>
-      <div class="product-price">16.990тг</div>
+      <div class="product-name">Макароны с Бенто</div>
+      
     </div>
 
   </div>
@@ -348,9 +430,58 @@ img {
 </div>
 </section>
 
-    <footer>
+ <footer>
       © 2025 Sheker. Все права защищены.
     </footer>
   </div>
+
+  </main>
+
+  <script>
+    const cityModal = document.getElementById("cityModal");
+    const cityMessage = document.getElementById("cityMessage");
+
+    // Показываем окно, если город не выбран ранее
+    window.onload = () => {
+      const savedCity = localStorage.getItem("selectedCity");
+      if (savedCity) {
+        showMessage(savedCity);
+        cityModal.style.display = "none";
+      } else {
+        cityModal.style.display = "flex";
+      }
+    }
+
+    function selectCity() {
+      const select = document.getElementById("citySelect");
+      const city = select.value;
+      if (!city || city === "-- Выберите город --") return;
+
+      // Сохр в localStorage
+      localStorage.setItem("selectedCity", city);
+
+      cityModal.style.display = "none";
+      showMessage(city);
+    }
+
+    function showMessage(city) {
+      cityMessage.textContent = `Шекер — ${city}. Спасибо, что выбрали нас!`;
+      cityMessage.classList.add("show");
+
+      // Через 4 секунды скрыть
+      setTimeout(() => {
+        cityMessage.classList.remove("show");
+        cityMessage.classList.add("hide");
+      }, 4000);
+
+      // Через 6 секунд полностью убрать
+      setTimeout(() => {
+        cityMessage.style.display = "none";
+      }, 6000);
+    }
+  </script> 
+
 </body>
+
 </html>
+
