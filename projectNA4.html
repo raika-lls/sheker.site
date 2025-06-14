@@ -2,95 +2,172 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Контакты — Кондитерская Шекер</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Свяжитесь с нами — Кондитерская Шекер</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #fdfaf8;
-      color: #6d5241;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    .wrapper {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 50px 40px;
-      background: white;
-      border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-      text-align: center;
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fdfaf8;
+      color: #6d5241;
+      line-height: 1.6;
     }
 
-    h1 {
+    h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-size: 30px;
       margin-bottom: 30px;
     }
 
-    p {
-      font-size: 18px;
-      line-height: 1.8;
-      margin-bottom: 24px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
+    #contacts {
+      padding: 60px 20px;
+      text-align: center;
     }
 
-    .contact-info {
-      margin-top: 30px;
-    }
-
-    .contact-info p {
-      margin: 10px 0;
-    }
-
-    .link-block {
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #f5f1ed;
+      padding: 30px 25px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       display: flex;
-      justify-content: center;
-      gap: 30px;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 1px solid #e2d6cd;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background-color: #6d5241;
+      color: white;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5a4236;
+    }
+
+    .social-links {
       margin-top: 40px;
     }
 
-    .back-link {
-      font-size: 16px;
-      text-decoration: none;
+    .social-links p {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .social-links a {
+      margin: 0 10px;
       color: #6d5241;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
-    .back-link:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 14px;
-      color: #999;
+    .social-links a:hover {
+      color: #a87c65;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1>Контакты</h1>
-    <p>Если у вас есть вопросы, предложения или вы хотите сделать заказ, свяжитесь с нами удобным для вас способом:</p>
 
-    <div class="contact-info">
-      <p><strong>Телефон:</strong> +7 (707) 534 20 42</p>
-      <p><strong>WhatsApp:</strong> +7 (707) 975 62 74 </p>
-      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/sheker.astana1/profilecard/?igsh=MXByMGYybXRxaHpjYg==" target="_blank" style="color:#6d5241; text-decoration: none;">@sheker_cakes</a></p>
-      <p><strong>Email:</strong> shekerinfo@gmail.com</p>
-    </div>
 
-    <div class="link-block">
-      <a class="back-link" href="index.html">← Вернуться на главную</a>
-      <a class="back-link" href="projectNA3.html">Доставка и оплата</a>
-    </div>
+<section id="contacts" style="padding: 80px 20px; text-align: center; background-color: #6d5241; color: white; font-family: 'Inter', sans-serif;">
+  <h2 class="fade-in" style="font-size: 2rem; margin-bottom: 30px;">Свяжитесь с нами</h2>
 
-    <footer>© 2025 Sheker. Все права защищены.</footer>
+  <form id="tg-form" class="fade-in" style="max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px;">
+    <input type="text" name="name" placeholder="Ваше имя" required style="padding: 14px; border-radius: 12px; border: none; font-size: 1rem;">
+    <textarea name="message" rows="4" placeholder="Сообщение" required style="padding: 14px; border-radius: 12px; border: none; font-size: 1rem;"></textarea>
+    <button type="submit" style="padding: 14px; border: none; border-radius: 12px; background-color: #ff4d4d; color: white; font-size: 1rem; cursor: pointer;">Отправить</button>
+  </form>
+
+  <div class="fade-in" style="margin-top: 40px;">
+    <p>Допольнительная информация:</p>
+
+    <p style="font-size: 0.9rem; color: #f0e6e6;">Время работы: с 10:00 до 20:00, ежедневно</p>
+    <p style="font-size: 0.9rem; color: #f0e6e6;">📧 Email: <a href="sdfghjk" style="color: #fff;">shekercake@gmail.com</a></p>
+    <p style="font-size: 0.9rem; color: #f0e6e6;">📞 Телефон: <a href="tel:+7 (707) 975 62 74" style="color: #fff;">+7 (707) 975 62 74</a></p>
   </div>
+
+  <div class="fade-in" style="margin-top: 50px;">
+    <a href="index.html" style="color: #ddd; text-decoration: underline; font-size: 0.9rem;">← Назад на главную</a>
+  </div>
+</section>
+
+<style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  button:hover {
+    background-color: #e63946;
+  }
+</style>
+
+<script>
+  const token = "7974867215:AAHr6GD4HXOX47O9HiPqwcV-IqxaRH4ZTGo";
+  const chatId = "7836855215"; 
+  const form = document.getElementById("tg-form");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = form.name.value;
+    const message = form.message.value;
+
+    const text = `📩 Новое сообщение с сайта:\n\n👤 Имя: ${name}\n💬 Сообщение:\n${message}`;
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Сообщение отправлено!");
+        form.reset();
+      } else {
+        alert("Ошибка отправки.");
+      }
+    } catch (error) {
+      alert("Ошибка соединения.");
+    }
+  });
+</script>
 </body>
 </html>
+
