@@ -1,487 +1,151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Кондитерская Шекер — Главная</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #fdfaf8;
-      color: #6d5241;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      margin: 0;
-      padding: 0;
-    }
-    
-    
-    .modal {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 30px 40px;
-      border-radius: 12px;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .modal-content h2 {
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-
-    select {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .modal-content button {
-      background: #6d5241;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .modal-content button:hover {
-      background: #5a4032;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .city-message {
-      position: fixed;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff0e8;
-      padding: 15px 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      font-size: 20px;
-      font-weight: 500;
-      opacity: 0;
-      z-index: 10000;
-      transition: all 0.8s ease;
-    }
-
-    .city-message.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .city-message.hide {
-      opacity: 0;
-      transform: translateX(-50%) translateY(-60px);
-    }
-
-    .wrapper {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 25px;
-      background: white;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-    }
-
-    header {
-      background-color: white;
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 20px;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .hero {
-      background-color: #6d5241;
-      border-radius: 15px;
-      padding: 40px 20px;
-      margin-top: 30px;
-      color: white;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-    }
-
-    .hero-text {
-      max-width: 700px;
-      margin: 60px auto 40px;
-      padding: 30px 25px;
-      background: #f5f1ed;
-      border-radius: 20px;
-      text-align: left;
-      font-size: 17px;
-      line-height: 1.7;
-      color: #6d5241;
-      font-weight: 400;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      
-    }
-    .hero-text p {
-    margin-bottom: 16px;
-    }
-
-    .hero-text h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    footer {
-      background-color: #654e3e;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      border-radius: 15px;
-      margin-top: 50px;
-      font-size: 14px;
-    }
-
-    /* ТОРТИКИ */
-    .cake-left, .cake-right {
-      position: fixed;
-      font-size: 28px;
-      animation: falling 6s linear infinite;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .cake-left { left: 5vw; top: -50px; }
-    .cake-right { right: 5vw; top: -50px; }
-    .delay1 { left: 15vw; animation-delay: 1s; }
-    .delay2 { right: 15vw; animation-delay: 2s; }
-    .delay3 { left: 25vw; animation-delay: 3s; }
-    .delay4 { right: 25vw; animation-delay: 4s; }
-
-    @keyframes falling {
-      0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: translateY(50vh) rotate(180deg); opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* КАТАЛОГ */
-    #catalog {
-      margin-top: 60px;
-    }
-
-    h1.catalog-title {
-      text-align: center;
-      font-size: 32px;
-      margin: 30px 0;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .product-card {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      border: 1px solid #e8dcd4;
-      transition: transform 0.3s;
-      cursor: pointer;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .product-name {
-      font-size: 20px;
-      margin: 15px 0 10px 0;
-      color: #3b3028;
-    }
-
-    .product-price {
-      font-weight: bold;
-      color: #3b3028;
-      font-size: 18px;
-      
-    }
-    .cake-info-box {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 25px 20px;
-  background: #f5f1ed;
-  border-radius: 16px;
-  text-align: center;
-  font-size: 15px;
-  color: #6d5241;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  line-height: 1.6;
-}
-
-
-    
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <title>Birge — прототип</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-   <div class="modal" id="cityModal">
-    <div class="modal-content">
-      <h2>Выберите ваш город</h2>
-      <select id="citySelect">
-        <option disabled selected>-- Выберите город --</option>
-        <option>Алматы</option>
-        <option>Астана</option>
-        <option>Шымкент</option>
-        <option>Караганда</option>
-        <option>Актобе</option>
-        <option>Тараз</option>
-        <option>Усть-Каменогорск</option>
-        <option>Костанай</option>
-        <option>Павлодар</option>
-        <option>Атырау</option>
-        <option>Кызылорда</option>
-        <option>Уральск</option>
-        <option>Петропавловск</option>
-        <option>Семей</option>
-      </select>
-      <button onclick="selectCity()">Выбрать</button>
+
+  <!-- SPLASH -->
+  <div id="splash" class="app-screen splash-screen active">
+    <div class="center">
+      <img src="images/birge_logo.png.jpeg" alt="Birge" class="splash-logo" onerror="this.style.display='none'">
+      <div class="splash-welcome center">Добро пожаловать!</div>
     </div>
   </div>
 
-  <!-- Сообщение -->
-  <div class="city-message" id="cityMessage"></div>
-
-  <main>
-  <div class="wrapper">
-    <header>
-      <div class="header-wrapper">
-        <img src="sheker.jpeg" alt="Кондитерская Шекер" width="450" height="200">
+  <!-- CITY SELECT -->
+  <div id="city" class="app-screen city-screen">
+    <div class="center">
+      <div class="city-title">Выберите город</div>
+      <div class="city-row">
+        <button class="city-btn" data-city="Астана">Астана</button>
+        <button class="city-btn" data-city="Алматы">Алматы</button>
       </div>
-    </header> 
-
-    <!-- Анимация -->
-    <div class="cake-left"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-right"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-left delay1"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-right delay2"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-left delay3"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-    <div class="cake-right delay4"><img src="cake.PNG" alt="cake" width="50" height="50"></div>
-
-    <div class="hero">
-      <h1>Кондитерская «Шекер»</h1>
-      <nav>
-        <a href="#top">Главная</a>
-        <a href="#catalog">Меню</a>
-        <a href="projectNA3.html">Начинки</a>
-        <a href="projectNA4.html">Связь</a>
-      </nav>
     </div>
-
-    <section class="hero-text">
-      <h2>Добро пожаловать в «Шекер»</h2>
-      <p>Рады видеть вас в нашем сладком уголке.
-
-      </p>
-
-      <p>Здесь каждая крошка полна заботы, а каждый вкус — с характером. 
-        Наши десерты — это не просто сладости, а капризные маленькие праздники, которые точно знают, как поднять настроение.</p>
-
-      <p>Вы, конечно, можете закрыть сайт... 
-        Но разве не любопытно, что прячется внутри самой вкусной коробочки этого дня? 🍰</p>
-    </section>
-
-    <!-- КАТАЛОГ -->
-    <section id="catalog">
-  <h1 class="catalog-title">Меню</h1>
-
-  <p style="font-size: 14px; color: #666; text-align: center; margin: 10px 20px 30px;">
-    Оформление торта — по вашему желанию и входит в комплект при заказе 🍰<br>
-    Свечи и открытки — можно добавить за +500тг 🎉
-  </p>
-   <p style="font-size: 14px; color: #666666a4; text-align: center; margin: 10px 20px 30px;">
-   (Нажмите на изображение торта, чтобы перейти к выбору <strong>Начинки</strong> и уточнению стоимости.)
-  </p>
-  
-  <div class="product-grid">
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="lambet.jpg" alt="Ламбет">
-     </a>
-      <div class="product-name">Торт «Ламбет»</div>
-      
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="benn.jpg" alt="Бенто ориг">
-      </a>
-      <div class="product-name">Бенто торт</div>
-     
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="lamben.jpg" alt="Бенто + Ламбет">
-      </a>
-      <div class="product-name">Бенто + Ламбет</div>
-    
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="cape.jpg" alt="Капкейки">
-      </a>
-      <div class="product-name">Капкейки</div>
-      <div class="product-price">1.500тг (1шт)</div>
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="capeben.jpg" alt="Капкейки с Бенто">
-      </a>
-      <div class="product-name">Капкейки с Бенто</div>
-      
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="capelambet.jpg" alt="Капкейки с Ламбет">
-      </a>
-      <div class="product-name">Капкейки с Ламбет</div>
-     
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="macaroon.jpeg" alt="Макарон">
-      </a>
-      <div class="product-name">Макароны</div>
-      <div class="product-price">2.900тг (1шт)</div>
-    </div>
-    <div class="product-card">
-      <a href="projectNA3.html">
-        <img src="benmaca.jpeg" alt="mmaca">
-      </a>
-      <div class="product-name">Макароны с Бенто</div>
-      
-    </div>
-
-  </div>
- <div class="cake-info-box">
-  Бенто торт — для 1–2 человек:<br>
-  Вес: 300–400 г (±)<br>
-  Диаметр: 10 см<br><br>
-
-  Бенто торт — для 3–4 человек:<br>
-  Вес: 600–700 г (±)<br>
-  Диаметр: 15 см
-</div>
-
-</div>
-</section>
-
- <footer>
-      © 2025 Sheker. Все права защищены.
-    </footer>
+    <canvas id="fireworksCanvas"></canvas>
   </div>
 
-  </main>
+  <!-- MAIN -->
+  <div id="main" class="app-screen">
+    <div class="topbar">
+      <div class="city-display" id="mainCity">Астана</div>
+      <div class="right-controls">
+        <button id="langBtn" class="lang-btn">RUS ▾</button>
+        <button id="settingsBtn" class="settings-btn">⚙</button>
+      </div>
+    </div>
 
-  <script>
-    const cityModal = document.getElementById("cityModal");
-    const cityMessage = document.getElementById("cityMessage");
+    <!-- small settings card -->
+    <div id="settingsCard" class="settings-card" aria-hidden="true">
+      <button id="settingsClose" class="settings-close">✖</button>
+      <ul class="settings-list">
+        <li>Язык приложения</li>
+        <li>Тема приложения</li>
+        <li>Карта Birge Pass</li>
+        <li>Поддержка</li>
+        <li>Вопросы и ответы</li>
+        <li>Выйти с аккаунта</li>
+      </ul>
+    </div>
 
-    // Показываем окно, если город не выбран ранее
-    window.onload = () => {
-      const savedCity = localStorage.getItem("selectedCity");
-      if (savedCity) {
-        showMessage(savedCity);
-        cityModal.style.display = "none";
-      } else {
-        cityModal.style.display = "flex";
-      }
-    }
+    <!-- Lang menu -->
+    <div id="langMenu" class="settings-card hidden" style="right:80px;top:70px;width:140px;padding:6px;">
+  <button class="settings-close" id="langClose" style="right:8px;top:6px">✖</button>
+  <div data-lang="kz">KAZ</div>
+  <div data-lang="ru">RUS</div>
+  <div data-lang="en">ENG</div>
+</div>
 
-    function selectCity() {
-      const select = document.getElementById("citySelect");
-      const city = select.value;
-      if (!city || city === "-- Выберите город --") return;
 
-      // Сохр в localStorage
-      localStorage.setItem("selectedCity", city);
 
-      cityModal.style.display = "none";
-      showMessage(city);
-    }
+    <!-- Banner -->
+    <div id="banner" class="banner">BIRGE PASS — получи шанс на все виды развлечений!</div>
 
-    function showMessage(city) {
-      cityMessage.textContent = `Шекер — ${city}. Спасибо, что выбрали нас!`;
-      cityMessage.classList.add("show");
+    <!-- Categories -->
+    <div class="categories-wrap">
+      <div class="categories-row" id="categoriesRow">
+        <button class="cat-pill active" data-key="culture">Культурный отдых</button>
+        <button class="cat-pill" data-key="cinema">Кино и медиа</button>
+        <button class="cat-pill" data-key="active">Активный отдых</button>
+        <button class="cat-pill" data-key="social">Социальные мероприятия</button>
+        <button class="cat-pill" data-key="taste">Вкус и отдых</button>
+      </div>
+    </div>
 
-      // Через 4 секунды скрыть
-      setTimeout(() => {
-        cityMessage.classList.remove("show");
-        cityMessage.classList.add("hide");
-      }, 4000);
+    <!-- Subcategories -->
+    <div id="subcats" class="subcat-list"></div>
+  </div>
 
-      // Через 6 секунд полностью убрать
-      setTimeout(() => {
-        cityMessage.style.display = "none";
-      }, 6000);
-    }
-  </script> 
+  <!-- PASS -->
+  <div id="pass" class="app-screen hidden pass-screen">
+    <div style="padding:8px 6px;overflow:auto;">
+      <div class="pass-card">
+        <img src="images/card-bg.jpg.jpeg" class="pass-photo" alt="pass">
+        <div style="padding:10px">
+          <h2>Birge Pass</h2>
+          <p>Единая подписка на развлечения города: кино, театр, концерты, квесты и многое другое.</p>
+          <ul>
+            <li>2 похода в кино</li>
+            <li>1 посещение театра</li>
+            <li>1 концерт или стендап-шоу</li>
+          </ul>
+          <button id="subscribeBtn" class="buy-btn">Оформить подписку</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- PROGRAMS -->
+  <div id="programs" class="app-screen hidden">
+    <div class="ai-center">
+      <h3>ИИ помощник</h3>
+      <div class="ai-input-row">
+        <input id="aiInput" class="ai-input" placeholder="Например: 'Вечер с девушкой, 19:00'">
+        <button id="aiGen" class="ai-btn">Сгенерировать</button>
+      </div>
+      <div id="aiOutput" class="ai-card">Здесь появится сценарий.</div>
+      <div id="aiHistory"></div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div id="profile" class="app-screen hidden">
+    <div class="profile-card">
+      <div id="profileNotAuth">
+        <input id="phoneInput" class="profile-input" placeholder="+7 (_) _-_-_">
+        <button id="phoneNext" class="buy-btn">Получить код</button>
+      </div>
+      <div id="profileForm" class="hidden">
+        <div id="avatar" class="subcard small">?</div>
+        <input id="firstName" class="profile-input" placeholder="Имя">
+        <input id="lastName" class="profile-input" placeholder="Фамилия">
+        <input id="middleName" class="profile-input" placeholder="Отчество">
+        <button id="saveProfile" class="buy-btn">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WALLET -->
+  <div id="wallet" class="app-screen hidden">
+    <div class="wallet-card">
+      <div id="slotsInfo">Слотов нет. Купите Birge Pass</div>
+      <button id="buyPassBtn" class="buy-btn">Купить Birge Pass</button>
+      <ul id="paymentsList"></ul>
+    </div>
+  </div>
+
+  <!-- bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active" data-screen="main">Главная</div>
+    <div class="nav-item" data-screen="programs">Программы</div>
+    <div class="nav-item" data-screen="profile">Профиль</div>
+    <div class="nav-item" data-screen="wallet">Кошелёк</div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
-
