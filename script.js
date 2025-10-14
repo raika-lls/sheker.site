@@ -1,6 +1,3 @@
-// script.js for Birge prototype
-// No $ anywhere, uses plain DOM and localStorage
-
 // Local storage keys
 var LS = {
   CITY: "birge_city_v1",
@@ -53,80 +50,6 @@ function showScreen(idName) {
   }
 }
 
-/* ===== Splash -> City -> Main flow ===== */
-setTimeout(function () {
-  var storedCity = localStorage.getItem(LS.CITY);
-  // hide splash
-  var splash = document.getElementById("splash");
-  if (splash) {
-    splash.classList.remove("active");
-    splash.classList.add("hidden");
-  }
-  if (storedCity) {
-    var mainCity = document.getElementById("mainCity");
-    if (mainCity) mainCity.textContent = storedCity;
-    showScreen("main");
-  } else {
-    var cityScreen = document.getElementById("city");
-    if (cityScreen) {
-      cityScreen.classList.remove("hidden");
-      cityScreen.classList.add("active");
-    }
-  }
-}, 5500);
-
-/* ===== Fireworks canvas (city selection) ===== */
-var fwCanvas = document.getElementById("fireworksCanvas");
-var fwCtx = fwCanvas && fwCanvas.getContext ? fwCanvas.getContext("2d") : null;
-function resizeCanvas() {
-  if (!fwCanvas) return;
-  fwCanvas.width = window.innerWidth;
-  fwCanvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
-
-function launchFireworks() {
-  if (!fwCtx) return;
-  var particles = [];
-  for (var i = 0; i < 80; i++) {
-    particles.push({
-      x: window.innerWidth / 2 + (Math.random() - 0.5) * 120,
-      y: window.innerHeight / 2 + (Math.random() - 0.5) * 60,
-      vx: (Math.random() - 0.5) * 6,
-      vy: (Math.random() - 0.9) * -6,
-      r: 2 + Math.random() * 3,
-      a: 1,
-      c: "hsl(" + Math.floor(Math.random() * 360) + ",80%,60%)"
-    });
-  }
-  var frame = 0;
-  function anim() {
-    frame++;
-    fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
-    var newParticles = [];
-    for (var k = 0; k < particles.length; k++) {
-      var p = particles[k];
-      fwCtx.globalAlpha = p.a;
-      fwCtx.fillStyle = p.c;
-      fwCtx.beginPath();
-      fwCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      fwCtx.fill();
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.12;
-      p.a -= 0.015;
-      if (p.a > 0.02) newParticles.push(p);
-    }
-    particles = newParticles;
-    if (frame < 120 && particles.length) {
-      requestAnimationFrame(anim);
-    } else {
-      fwCtx.clearRect(0, 0, fwCanvas.width, fwCanvas.height);
-    }
-  }
-  anim();
-}
 
 /* ===== City buttons ===== */
 var cityBtns = document.querySelectorAll(".city-btn");
@@ -266,6 +189,7 @@ var subMap = {
   taste: ["Рестораны", "Кофейни", "Rooftop-бары", "Гастротуры"],
   travel: ["Городские экскурсии", "Направления для отдыха", "Выезды на природу"]
 };
+
 
 var catButtons = document.querySelectorAll(".cat-pill");
 var subcatsWrap = document.getElementById("subcats");
@@ -538,4 +462,73 @@ document.addEventListener("keydown", function (e) {
       langMenu.classList.remove("active");
     }
   }
+});
+document.addEventListener("DOMContentLoaded", function () {
+  /* ===== Локации с фото для подкатегорий ===== */
+  var locationCards = {
+    "Кинотеатры": [
+      { name: "Chaplin Mega Silk Way", img: "https://i.imgur.com/Z3jYF1m.jpeg" },
+      { name: "Kinopark Khan Shatyr", img: "https://i.imgur.com/Zpr1oGx.jpeg" },
+      { name: "Cinemax Keruen", img: "https://i.imgur.com/1vMEXaZ.jpeg" },
+      { name: "Chaplin Asia Park", img: "https://i.imgur.com/uqI1mA2.jpeg" }
+    ],
+    "Театр": [
+      { name: "Театр Жастар", img: "https://i.imgur.com/hY3UpOZ.jpeg" },
+      { name: "Астана Балет", img: "https://i.imgur.com/NZrmuvx.jpeg" },
+      { name: "Астана Опера", img: "https://i.imgur.com/Q5f8uxy.jpeg" },
+      { name: "Nomad City Hall", img: "https://i.imgur.com/y17FjIq.jpeg" }
+    ],
+    "Квесты": [
+      { name: "Quest Zone", img: "https://i.imgur.com/LaR4Zy1.jpeg" },
+      { name: "IQ Quest", img: "https://i.imgur.com/YBBOklL.jpeg" },
+      { name: "Escape Room Astana", img: "https://i.imgur.com/dfEm99m.jpeg" },
+      { name: "Enigma", img: "https://i.imgur.com/JtfLg8z.jpeg" }
+    ],
+    "Рестораны": [
+      { name: "Line Brew", img: "https://i.imgur.com/lHjSxwX.jpeg" },
+      { name: "Rumi", img: "https://i.imgur.com/j6Md8Cm.jpeg" },
+      { name: "Del Papa", img: "https://i.imgur.com/tYLMjR7.jpeg" },
+      { name: "Ocean Basket", img: "https://i.imgur.com/9yVweYI.jpeg" }
+    ]
+  };
+
+  /* ===== Создание контейнера для карточек ===== */
+  var container = document.createElement("div");
+  container.id = "locationContainer";
+  container.className = "location-container";
+  document.body.appendChild(container);
+
+  /* ===== Функция для отображения карточек ===== */
+  function showLocationCards(subcategory) {
+    container.innerHTML = "";
+    var cards = locationCards[subcategory];
+
+    if (!cards) {
+      container.innerHTML = "<p style='text-align:center;margin-top:30px;'>Нет данных для этой категории</p>";
+      return;
+    }
+
+    cards.forEach(function (item) {
+      var card = document.createElement("div");
+      card.className = "location-card";
+      card.innerHTML =
+        "<img src='" + item.img + "' alt='" + item.name + "'>" +
+        "<div class='loc-name'>" + item.name + "</div>";
+      container.appendChild(card);
+    });
+
+    container.style.display = "grid";
+    setTimeout(function () {
+      container.classList.add("visible");
+    }, 50);
+  }
+
+  /* ===== Привязка событий к кнопкам ===== */
+  var subButtons = document.querySelectorAll(".subcategory");
+  subButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.textContent.trim();
+      showLocationCards(text);
+    });
+  });
 });
